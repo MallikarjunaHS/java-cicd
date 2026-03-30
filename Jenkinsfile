@@ -14,7 +14,7 @@ pipeline {
         stage('sonar_scan') {
             steps {
                 script {
-                    withSonarQubeEnv('sonar-hiqode') {
+                    withSonarQubeEnv('Sonarqube') {
                         sh "mvn clean verify sonar:sonar -Dsonar.projectKey=sonar-scan-with-jenkins -Dsonar.projectName='sonar-scan-with-jenkins'"
                     }
                 }
