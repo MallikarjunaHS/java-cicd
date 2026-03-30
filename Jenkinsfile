@@ -1,7 +1,7 @@
 pipeline {
     agent any
     tools {
-        maven 'maven_m3'
+        maven 'maven'
         ansible 'ansible'
     }
     stages {
@@ -35,7 +35,7 @@ pipeline {
                     withCredentials([usernamePassword(credentialsId: 'nexus-cred', passwordVariable: 'pass', usernameVariable: 'user')]) {
                         sh """
                         curl -u ${user}:${pass} -T java-frontend-app-${BUILD_NUMBER}.war \
-                        "http://13.232.30.13:8081/repository/java-artifacts/java-frontend-app-${BUILD_NUMBER}.war"
+                        "http://54.91.74.205:8081/repository/java-app//java-frontend-app-${BUILD_NUMBER}.war"
                         """
                     }
                 }
@@ -46,8 +46,8 @@ pipeline {
             steps {
                 script {
                     sh """
-                    chmod 400 /var/lib/jenkins/demo-aws.pem
-                    ansible-playbook deploy_tomcat.yml -i hosts.ini --private-key /var/lib/jenkins/demo-aws.pem -u ubuntu -e 'BUILD_NUMBER=${BUILD_NUMBER}'
+                    chmod 400 /var/lib/jenkins/nv_shiv.pem
+                    ansible-playbook deploy_tomcat.yml -i hosts.ini --private-key /var/lib/jenkins/nv_shiv.pem -u ubuntu -e 'BUILD_NUMBER=${BUILD_NUMBER}'
                     """
                 }
             }
