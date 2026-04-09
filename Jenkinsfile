@@ -2,8 +2,8 @@ pipeline {
     agent any
 
     environment {
-        AWS_REGION = 'us-east-1'
-        ECR_REPO   = '218137097139.dkr.ecr.us-east-1.amazonaws.com/java-app'
+        AWS_REGION = 'us-southeast-2'
+        ECR_REPO   = '927396907388.dkr.ecr.ap-southeast-2.amazonaws.com/java-app'
     }
 
     tools {
@@ -14,7 +14,7 @@ pipeline {
 
         stage('Clone Repo') {
             steps {
-                git branch: 'main', url: 'https://github.com/vtricksshiva/java-cicd.git'
+                git branch: 'main', url: 'https://github.com/MallikarjunaHS12/java-cicd.git'
             }
         }
 
